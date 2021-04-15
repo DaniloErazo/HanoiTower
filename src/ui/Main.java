@@ -14,8 +14,8 @@ public class Main {
 		
 		Main ppal = new Main();
 		Main.setTower(3);
-		Main.hanoiTower(3, 1, 3, 2);
-		
+		System.out.println(tower + " " + tower2 + " " + tower3);
+		Main.solveTowers(3, 1, 3);
 		
 
 	}
@@ -31,30 +31,45 @@ public class Main {
 	}
 	
 	 
-	public static void hanoiTower(int discos, int agujaOrigen,int agujaDestino, int agujaTemp){
-		 // caso base -- sólo hay que mover un disco
-		 //System.out.println(tower + " " + tower2 + " " + tower3);
-		 if (discos == 1)
-		 {
-			 System.out.printf("%n%d --> %d", agujaOrigen, agujaDestino);
-			 //System.out.println("\n");
-			 System.out.println("here");
-			 return;
-		 }
-		 
-		 hanoiTower(discos - 1, agujaOrigen, agujaTemp, agujaDestino);
-		
-		 System.out.printf("%n%d --> %d", agujaOrigen, agujaDestino);
-		 System.out.println("\n");
-		
-		 hanoiTower(discos - 1, agujaTemp, agujaDestino, agujaOrigen);
-		
-		 
-		 //tower3=tower3+1;
-	}
 
 	public static void setTower(int t) {
 		tower = t;
+	}
+	
+	public static void solveTowers(int n, int start, int end) {
+		if(n==1) {
+			printMove(start, end);
+		}else {
+			int aux = 6 - (start+end);
+			//move from 1 to aux
+			solveTowers(n-1, start, aux);
+			printMove(start, end);
+			
+			//move from aux to 3 rod
+			
+			solveTowers(n-1, aux, end);
+
+		}
+	}
+	
+	public static void printMove(int start, int end) {
+		//System.out.println(start + " --> " + end);
+		if(start==1) {
+			tower=tower-1;
+		}else if(start==2) {
+			tower2=tower2-1;
+		}else if(start==3) {
+			tower3=tower3-1;
+		}
+		
+		if(end==1) {
+			tower=tower+1;
+		}else if(end==2) {
+			tower2=tower2+1;
+		}else {
+			tower3=tower3+1;
+		}
+		System.out.println(tower + " " + tower2 + " " + tower3 );
 	}
 	
 
