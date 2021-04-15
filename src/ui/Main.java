@@ -1,6 +1,5 @@
 package ui;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
@@ -10,7 +9,7 @@ public class Main {
 	private static int tower2;
 	private static int tower3;
 	
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		tower=0;
 		tower2=0;
 		tower3=0;
@@ -57,7 +56,7 @@ public class Main {
 		}
 	}
 	
-	public static String printMove(int start, int end) {
+	public static void printMove(int start, int end) {
 		//System.out.println(start + " --> " + end);
 		if(start==1) {
 			tower=tower-1;
@@ -75,7 +74,6 @@ public class Main {
 			tower3=tower3+1;
 		}
 		System.out.println(tower + " " + tower2 + " " + tower3 );
-		return tower + " " + tower2 + " " + tower3;
 	}
 	
 
