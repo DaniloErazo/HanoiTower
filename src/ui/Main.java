@@ -1,46 +1,44 @@
 package ui;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Main {
 	
-	public static Scanner sc = new Scanner(System.in);
-	private static int tower;
-	private static int tower2;
-	private static int tower3;
+	static BufferedWriter bw;
+	static BufferedReader br;
+	private static int tower=0;
+	private static int tower2=0;
+	private static int tower3=0;
 	
-	public static void main(String[] args) {
-		tower=0;
-		tower2=0;
-		tower3=0;
+	public static void main(String[] args) throws IOException {
+	
+		br = new BufferedReader(new FileReader("data/input.txt"));
+		bw = new BufferedWriter(new FileWriter("data/output.txt"));
 		
-		int repetitions = sc.nextInt();
-		sc.nextLine();
-		int[] cases = new int[repetitions];
-		int n;
+		int repetitions = Integer.parseInt(br.readLine());
+		int n = 0;
 		
-		for(int i=0; i<repetitions; i++) {
-			n=sc.nextInt();
-			sc.nextLine();
-			cases[i]=n;
-		}
-		
-		for (int i = 0; i < cases.length; i++) {
-			n = cases[i];
+		for(int i =0;i<repetitions;i++) {
+			n = Integer.parseInt(br.readLine());
+			bw.write(n + " " + 0 + " " + 0 + "\n");
 			tower = n;
 			tower2 = 0;
 			tower3 = 0;
-			System.out.println(n + " " + 0 + " " + 0 );
 			solveTowers(n, 1, 3);
-			System.out.println("\n");
-		}
-		
+			bw.write("\n");
+			}
+		br.close();
+		bw.close();
 		
 
 	}
 	
 	
-	public static void solveTowers(int n, int start, int end) {
+	public static void solveTowers(int n, int start, int end) throws IOException {
 		if(n==1) {
 			printMove(start, end);
 		}else {
@@ -56,7 +54,7 @@ public class Main {
 		}
 	}
 	
-	public static void printMove(int start, int end) {
+	public static void printMove(int start, int end) throws IOException {
 		//System.out.println(start + " --> " + end);
 		if(start==1) {
 			tower=tower-1;
@@ -73,7 +71,7 @@ public class Main {
 		}else {
 			tower3=tower3+1;
 		}
-		System.out.println(tower + " " + tower2 + " " + tower3 );
+		bw.write(tower + " " + tower2 + " " + tower3 + "\n");
 	}
 	
 
